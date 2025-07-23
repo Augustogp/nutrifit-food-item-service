@@ -1,0 +1,12 @@
+com\augustogp\nutrifit\food_item\exception\ResourceNotFoundException.class
+com\augustogp\nutrifit\food_item\controller\FoodItemController.class
+com\augustogp\nutrifit\food_item\model\FoodItem.class
+com\augustogp\nutrifit\food_item\service\FoodItemService.class
+com\augustogp\nutrifit\food_item\model\FoodItem$FoodItemBuilder.class
+com\augustogp\nutrifit\food_item\repository\FoodItemRepository.class
+com\augustogp\nutrifit\food_item\exception\ErrorResponse.class
+com\augustogp\nutrifit\food_item\dto\FoodItemResponse.class
+com\augustogp\nutrifit\food_item\dto\FoodItemRequest.class
+com\augustogp\nutrifit\food_item\exception\GlobalExceptionHandler.class
+com\augustogp\nutrifit\food_item\FoodItemServiceApplication.class
+com\augustogp\nutrifit\food_item\mapper\FoodItemMapper.class
