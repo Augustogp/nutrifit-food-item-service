@@ -37,11 +37,10 @@ jobs:
 
       - name: Build and Test with JaCoCo
         run: |
-          cd food-item-service
           mvn clean verify
 
       - name: Upload JaCoCo Coverage Report
         uses: actions/upload-artifact@v4
         with:
           name: jacoco-report
-          path: food-item-service/target/site/jacoco
+          path: target/site/jacoco
