@@ -1,16 +1,47 @@
 services:
-  mysql:
+  mysql-food-item-service:
     image: 'mysql:8.0'
-    container_name: 'nutri_mysql'
+    container_name: 'mysql_food_item_service'
     ports:
       - '3308:3306'
     environment:
       MYSQL_ROOT_PASSWORD: rootpass
-      MYSQL_DATABASE: nutrifit
+      MYSQL_DATABASE: food_item_service
       MYSQL_USER: nutrifituser
       MYSQL_PASSWORD: nutripass
     volumes:
       - 'mysql_data:/var/lib/mysql'
+      - './docker/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql'
+    networks:
+        - nutrifit_network
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  food-item-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: nutrifit-food-item-service:latest
+    container_name: nutrifit_food_item_service
+    ports:
+      - '4001:4001'
+    depends_on:
+      mysql-food-item-service:
+        condition: service_healthy
+    environment:
+        SPRING_DATASOURCE_URL: jdbc:mysql://mysql-food-item-service:3306/food_item_service
+        SPRING_DATASOURCE_USERNAME: nutrifituser
+        SPRING_DATASOURCE_PASSWORD: nutripass
+        SPRING_JPA_HIBERNATE_DDL_AUTO: none
+    networks:
+        - nutrifit_network
+
 
 volumes:
   mysql_data:
+networks:
+    nutrifit_network:
+        driver: bridge

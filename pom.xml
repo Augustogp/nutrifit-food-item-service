@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.augustogp.nutrifit</groupId>
-	<artifactId>food-item-service</artifactId>
+	<artifactId>nutrifit-food-item-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>food-item-service</name>
+	<name>nutrifit-food-item-service</name>
 	<description>Food Item service of NutriFit</description>
 	<url/>
 	<licenses>
@@ -121,6 +121,19 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>3.2.5</version>
+			</plugin>
+
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>3.5.3</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
