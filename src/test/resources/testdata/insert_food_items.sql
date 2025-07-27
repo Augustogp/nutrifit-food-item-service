@@ -1,3 +1,13 @@
+CREATE TABLE IF NOT EXISTS food_item (
+    id BINARY(16) PRIMARY KEY,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    proteins_per_gram DECIMAL(8, 5) NOT NULL,
+    carbohydrates_per_gram DECIMAL(8, 5) NOT NULL,
+    saturated_fats_per_gram DECIMAL(8, 5) NOT NULL,
+    unsaturated_fats_per_gram DECIMAL(8, 5) NOT NULL,
+    trans_fats_per_gram DECIMAL(8, 5) NOT NULL
+);
+
 -- Insert mock data into food_item
 INSERT INTO food_item (id, name, proteins_per_gram, carbohydrates_per_gram, saturated_fats_per_gram, unsaturated_fats_per_gram, trans_fats_per_gram)
 VALUES

@@ -1,0 +1,12 @@
+spring:
+  flyway:
+    enabled: false
+
+  datasource:
+    url: jdbc:tc:mysql:8.0:///testdb
+    username: test
+    password: test
+    driver-class-name: org.testcontainers.jdbc.ContainerDatabaseDriver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop # Let Hibernate create and destroy the schema for each test run
