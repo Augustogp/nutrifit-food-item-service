@@ -12,6 +12,7 @@ public class FoodItemMapper {
 
         return FoodItem.builder()
                 .name(foodItemRequest.name())
+                .caloriesPerGram(foodItemRequest.caloriesPerGram())
                 .carbohydratesPerGram(foodItemRequest.carbohydratesPerGram())
                 .proteinsPerGram(foodItemRequest.proteinsPerGram())
                 .transFatsPerGram(foodItemRequest.transFatsPerGram())
@@ -25,6 +26,7 @@ public class FoodItemMapper {
         return new FoodItemResponse(
                 foodItem.getId(),
                 foodItem.getName(),
+                foodItem.getCaloriesPerGram(),
                 foodItem.getProteinsPerGram(),
                 foodItem.getCarbohydratesPerGram(),
                 foodItem.getSaturatedFatsPerGram(),

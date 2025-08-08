@@ -2,6 +2,7 @@ package com.augustogp.nutrifit.food_item.service;
 
 import com.augustogp.nutrifit.food_item.dto.FoodItemRequest;
 import com.augustogp.nutrifit.food_item.dto.FoodItemResponse;
+import com.augustogp.nutrifit.food_item.exception.DuplicateResourceException;
 import com.augustogp.nutrifit.food_item.exception.ResourceNotFoundException;
 import com.augustogp.nutrifit.food_item.mapper.FoodItemMapper;
 import com.augustogp.nutrifit.food_item.model.FoodItem;
@@ -38,6 +39,11 @@ public class FoodItemService {
     }
 
     public FoodItemResponse createFoodItem(FoodItemRequest foodItemRequest) {
+
+        if (foodItemRepository.existsByName(foodItemRequest.name())) {
+            log.error("Food Item with name: {} already exists", foodItemRequest.name());
+            throw new DuplicateResourceException("Food Item with name: " + foodItemRequest.name() + " already exists.");
+        }
 
         FoodItem foodItem = foodItemMapper.toEntity(foodItemRequest);
 

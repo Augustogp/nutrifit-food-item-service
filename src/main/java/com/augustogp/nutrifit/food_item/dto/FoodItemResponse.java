@@ -5,6 +5,7 @@ import java.util.UUID;
 public record FoodItemResponse(
         UUID id,
         String name,
+        double caloriesPerGram,
         double proteinsPerGram,
         double carbohydratesPerGram,
         double saturatedFatsPerGram,
