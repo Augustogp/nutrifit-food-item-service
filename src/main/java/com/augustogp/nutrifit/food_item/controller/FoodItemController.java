@@ -3,6 +3,7 @@ package com.augustogp.nutrifit.food_item.controller;
 import com.augustogp.nutrifit.food_item.dto.FoodItemRequest;
 import com.augustogp.nutrifit.food_item.dto.FoodItemResponse;
 import com.augustogp.nutrifit.food_item.service.FoodItemService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,7 +36,7 @@ public class FoodItemController {
     }
 
     @PostMapping
-    public ResponseEntity<FoodItemResponse> createFoodItem(@RequestBody FoodItemRequest foodItemRequest) {
+    public ResponseEntity<FoodItemResponse> createFoodItem(@Valid @RequestBody FoodItemRequest foodItemRequest) {
 
         FoodItemResponse foodItemResponse = foodItemService.createFoodItem(foodItemRequest);
 
@@ -43,7 +44,7 @@ public class FoodItemController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<FoodItemResponse> updateFoodItem(@PathVariable UUID id, @RequestBody FoodItemRequest foodItemRequest) {
+    public ResponseEntity<FoodItemResponse> updateFoodItem(@PathVariable UUID id, @Valid @RequestBody FoodItemRequest foodItemRequest) {
 
         FoodItemResponse foodItemResponse = foodItemService.updateFoodItem(id, foodItemRequest);
 

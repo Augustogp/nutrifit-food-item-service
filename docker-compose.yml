@@ -3,7 +3,7 @@ services:
     image: 'mysql:8.0'
     container_name: 'mysql_food_item_service'
     ports:
-      - '3308:3306'
+      - '3309:3306'
     environment:
       MYSQL_ROOT_PASSWORD: rootpass
       MYSQL_DATABASE: food_item_service
@@ -13,7 +13,7 @@ services:
       - 'mysql_data:/var/lib/mysql'
       - './docker/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql'
     networks:
-        - nutrifit_network
+        - nutrifit-network
     healthcheck:
       test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
       interval: 10s
@@ -28,6 +28,7 @@ services:
     container_name: nutrifit_food_item_service
     ports:
       - '4001:4001'
+      - '9001:9001'
     depends_on:
       mysql-food-item-service:
         condition: service_healthy
@@ -36,12 +37,17 @@ services:
         SPRING_DATASOURCE_USERNAME: nutrifituser
         SPRING_DATASOURCE_PASSWORD: nutripass
         SPRING_JPA_HIBERNATE_DDL_AUTO: none
+        SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
+        SERVER_PORT: 4001
+        GRPC_SERVER_PORT: 9001
+
+
     networks:
-        - nutrifit_network
+        - nutrifit-network
 
 
 volumes:
   mysql_data:
 networks:
-    nutrifit_network:
-        driver: bridge
+    nutrifit-network:
+        external: true

@@ -8,12 +8,14 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="food-item-service" />
+        <module name="nutrifit-food-item-service" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="food-item-service" options="-parameters" />
+      <module name="nutrifit-food-item-service" options="-parameters" />
     </option>
   </component>
 </project>

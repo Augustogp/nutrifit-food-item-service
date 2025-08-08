@@ -19,6 +19,8 @@ public class FoodItem {
     @Column(unique = true)
     private String name;
 
+    private double caloriesPerGram;
+
     private double proteinsPerGram;
 
     private double carbohydratesPerGram;

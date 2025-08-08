@@ -22,12 +22,8 @@ import java.util.UUID;
 @Import(TestcontainersConfiguration.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Transactional
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @Sql(scripts = "/testdata/insert_food_items.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_CLASS)
 class FoodItemServiceApplicationTests {
-
-	@Autowired
-	MySQLContainer<?> mySQLContainer;
 
 	@LocalServerPort
 	Integer port;
@@ -45,6 +41,7 @@ class FoodItemServiceApplicationTests {
 		String requestBody = """
 				{
 					"name": "Apple",
+					"caloriesPerGram": 0.052,
 					"proteinsPerGram": 0.003,
 					"carbohydratesPerGram": 0.137,
 					"saturatedFatsPerGram": 0.0003,
@@ -68,7 +65,7 @@ class FoodItemServiceApplicationTests {
 	@Test
 	void shouldUpdateFoodItem() {
 
-		String foodItemName = "Avocado";
+		String foodItemName = "Banana";
 
 		FoodItemResponse foodItemResponse = RestAssured.given()
 				.contentType("application/json")
@@ -84,6 +81,7 @@ class FoodItemServiceApplicationTests {
 		String updateRequestBody = """
 				{
 					"name": "Updated Avocado",
+					"caloriesPerGram": 0.052,
 					"proteinsPerGram": 0.004,
 					"carbohydratesPerGram": 0.138,
 					"saturatedFatsPerGram": 0.0004,
@@ -107,7 +105,7 @@ class FoodItemServiceApplicationTests {
 	@Test
 	void shouldDeleteFoodItem() {
 
-		String foodItemName = "Banana";
+		String foodItemName = "Rice";
 
 		FoodItemResponse foodItemResponse = RestAssured.given()
 				.contentType("application/json")
